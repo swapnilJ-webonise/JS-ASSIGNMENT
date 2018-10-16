@@ -1,0 +1,60 @@
+<html>
+  	<head>
+      Question 4 - solutions
+  </head>
+  
+  <body>
+    <center>
+<table>
+
+<tr><td>Enter UserName :</td><td> <input type = "text" id = "user"></td></tr>
+<tr><td>Enter User Email :</td> <td> <input type = "text" id = "email"><td></tr>
+<tr><td colspan = 2 align = center><button id = "submit" onclick="save()"> Submit</button></td></tr>
+<tr><td colspan = 2 align = center><button id = "get" onclick="getData()"> Get</button></td></tr>
+</table>
+<p id='demo'></p>    
+	</center>
+
+<script type="text/javascript">
+
+function save(){
+
+var userData = new Array();
+
+var today = new Date();
+
+
+
+if(localStorage){
+
+var user = document.getElementById("user").value;
+var email = document.getElementById("email").value;
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+
+var userinfo = {'user' : user, 'email': email, 'date': date};
+userData.push(userinfo);
+localStorage.setItem('userData',JSON.stringify(userData));
+
+}
+
+
+console.log(name + email + date);
+}
+
+
+function getData(){
+
+var userinfo = localStorage.getItem('user');
+
+document.getElementById('demo').innerHTML = userinfo;
+}
+
+
+
+
+
+</script>
+
+</body>
+
+</html>

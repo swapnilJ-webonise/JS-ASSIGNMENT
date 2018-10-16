@@ -1,0 +1,42 @@
+<html>
+<head>
+
+	<script type="text/javascript">
+	function addhandlers() {
+	var closetime,closetime2,closetime3;
+  		document.getElementById("newtab").addEventListener("click", function(){
+			tab1=window.open("https://www.google.com/");
+			tab2=window.open("http://www.we3c.com/");
+			tab3=window.open("https://www.youtube.com/");
+
+			 closetime=setInterval(function(){
+				 closetime2=setInterval(function(){
+					 closetime3=setInterval(function(){tab3.close();	clearInterval(closetime3);},3000);
+				tab2.close();
+				clearInterval(closetime2);},3000);
+			tab1.close();
+			clearInterval(closetime); }, 3000);			
+			}
+			
+		,true);
+
+		document.getElementById("closetab").addEventListener("click", function(){
+			clearInterval(closetime);
+			clearInterval(closetime2);			
+			clearInterval(closetime3);
+			console.log("you stopped tab from auto closing");
+			}
+		,true);
+	}
+	window.onload=addhandlers;
+
+	</script>
+</head>
+<body>
+
+<center>
+	<input type="button" id="newtab" value="Open multiple tabs here"><br>
+	<input type="button" id="closetab" value ="Pause closing tabs here">
+</center>
+</body>
+</html>
