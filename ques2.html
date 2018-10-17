@@ -1,101 +1,92 @@
 <html>
-  	<head>
-      Question 1 - solutions
-  </head>
-  
-  <body>
-    <center> Enter First Number: <input type = 'text' id='num1'>
-<br>			Enter second Numbers: <input type = 'text' id='num2'>
-      <br> <input type ='button' value = "Addition" onClick = "add()" id='add'>   <input type ='button' value = "Subtraction" onClick = "sub()" id='sub'>
-      <br><input type ='button' value = "Multiplication" onClick = "mul()" id='mul'><input type ='button' value = "Divison" onClick = "div()" id='div'>
-<p id='demo'></p>    
-	</center>
 
-<script type="text/javascript">
+<head>
+    Question 1 - solutions
+</head>
 
-function add(){
-	var number1 = document.getElementById('num1').value;
-	var number2 = document.getElementById('num2').value;
+<body>
+    <center> Enter First Number: <input type='text' id='num1'>
+        <br> Enter second Numbers: <input type='text' id='num2'>
+        <br> <input type='button' value="Addition" onClick="add()" id='add'> <input type='button' value="Subtraction" onClick="sub()" id='sub'>
+        <br><input type='button' value="Multiplication" onClick="mul()" id='mul'><input type='button' value="Divison" onClick="div()" id='div'>
+        <p id='demo'></p>
+    </center>
+    <script type="text/javascript">
+    function add() {
+        var number1 = document.getElementById('num1').value;
+        var number2 = document.getElementById('num2').value;
 
-	try{
-		if(number1 == "" || number2 == "") throw "Text Box cannot be Empty";
-		 if(isNaN(number1) || isNaN(number2)) throw "input is not a number";
-		if(!isNaN(number1) && !isNaN(number2)){
-			document.getElementById("demo").innerHTML = parseInt(number1) + (parseInt(number2));
-		}
-	
-	}catch(err){
-		document.getElementById("demo").innerHTML = ("Error is "+err);
-}
+        try {
+            if (number1 == "" || number2 == "") throw "Text Box cannot be Empty";
+            if (isNaN(number1) || isNaN(number2)) throw "input is not a number";
+            if (!isNaN(number1) && !isNaN(number2)) {
+                document.getElementById("demo").innerHTML = parseInt(number1) + (parseInt(number2));
+            }
 
-	finally{
-		console.log("operation done");
-	}
-}
+        } catch (err) {
+            document.getElementById("demo").innerHTML = ("Error is " + err);
+        } finally {
+            console.log("operation done");
+        }
+    }
 
-function sub(){
-	var number1 = document.getElementById('num1').value;
-	var number2 = document.getElementById('num2').value;
+    function sub() {
+        var number1 = document.getElementById('num1').value;
+        var number2 = document.getElementById('num2').value;
 
-	try{
-		if(number1 == "" || number2 == "") throw "Text Box cannot be Empty";
-		 if(isNaN(number1) || isNaN(number2)) throw "input is not a number";
+        try {
+            if (number1 == "" || number2 == "") throw "Text Box cannot be Empty";
+            if (isNaN(number1) || isNaN(number2)) throw "input is not a number";
 
-		if(!isNaN(number1) && !isNaN(number2)){
-			document.getElementById("demo").innerHTML = parseInt(number1) - (parseInt(number2));
-		}
-	
-	}catch(err){
-		document.getElementById("demo").innerHTML = ("Error is "+err);
-}
+            if (!isNaN(number1) && !isNaN(number2)) {
+                document.getElementById("demo").innerHTML = parseInt(number1) - (parseInt(number2));
+            }
 
-	finally{
-		console.log("operation done");
-	}
-}
-function mul(){
-	var number1 = document.getElementById('num1').value;
-	var number2 = document.getElementById('num2').value;
+        } catch (err) {
+            document.getElementById("demo").innerHTML = ("Error is " + err);
+        } finally {
+            console.log("operation done");
+        }
+    }
 
-	try{
-		if(number1 == "" || number2 == "") throw "Text Box cannot be Empty";
-		 if(isNaN(number1) || isNaN(number2)) throw "input is not a number";		
-		console.log(isNaN(number1) );
-		if(!isNaN(number1) && !isNaN(number2)){
-			document.getElementById("demo").innerHTML = parseInt(number1) * (parseInt(number2));
-		}
-	
-	}catch(err){
-		document.getElementById("demo").innerHTML = ("Error is "+err);
-}
+    function mul() {
+        var number1 = document.getElementById('num1').value;
+        var number2 = document.getElementById('num2').value;
 
-	finally{
-		console.log("operation done");
-	}
-}
-function div(){
-	var number1 = document.getElementById('num1').value;
-	var number2 = document.getElementById('num2').value;
+        try {
+            if (number1 == "" || number2 == "") throw "Text Box cannot be Empty";
+            if (isNaN(number1) || isNaN(number2)) throw "input is not a number";
+            console.log(isNaN(number1));
+            if (!isNaN(number1) && !isNaN(number2)) {
+                document.getElementById("demo").innerHTML = parseInt(number1) * (parseInt(number2));
+            }
 
-	try{
-		if(number1 == "" || number2 == "") throw "Text Box cannot be Empty";
-		 if(isNaN(number1) || isNaN(number2)) throw "input is not a number";
-		console.log(isNaN(number1) );
-		if(!isNaN(number1) && !isNaN(number2)){
-			document.getElementById("demo").innerHTML = parseInt(number1) / (parseInt(number2));
-		}
-	
-	}catch(err){
-		document.getElementById("demo").innerHTML = ("Error is "+err);
-}
+        } catch (err) {
+            document.getElementById("demo").innerHTML = ("Error is " + err);
+        } finally {
+            console.log("operation done");
+        }
+    }
 
-	finally{
-		console.log("operation done");
-	}
-}
+    function div() {
+        var number1 = document.getElementById('num1').value;
+        var number2 = document.getElementById('num2').value;
 
-</script>
+        try {
+            if (number1 == "" || number2 == "") throw "Text Box cannot be Empty";
+            if (isNaN(number1) || isNaN(number2)) throw "input is not a number";
+            console.log(isNaN(number1));
+            if (!isNaN(number1) && !isNaN(number2)) {
+                document.getElementById("demo").innerHTML = parseInt(number1) / (parseInt(number2));
+            }
 
+        } catch (err) {
+            document.getElementById("demo").innerHTML = ("Error is " + err);
+        } finally {
+            console.log("operation done");
+        }
+    }
+    </script>
+</body>
 
-  </body>
 </html>

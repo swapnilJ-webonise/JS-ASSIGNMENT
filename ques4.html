@@ -1,60 +1,103 @@
 <html>
-  	<head>
-      Question 4 - solutions
-  </head>
-  
-  <body>
+
+<head>
+   <center> Question 4 - solutions<center>
+</head>
+
+<body>
     <center>
-<table>
+        <table>
+            <tr>
+                <td>Enter UserName :</td>
+                <td> <input type="text" id="user"></td>
+            </tr>
+            <tr>
+                <td>Enter User Email :</td>
+                <td> <input type="text" id="email">
+                <td>
+            </tr>
+            <tr>
+                <td colspan=2 align=center><button id="submit" onclick="save()"> Submit</button></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=center><button id="get" onclick="getData()"> Get</button></td>
+            </tr>
+        </table>
+        <p id="table"></p>
+    </center>
+    <script type="text/javascript">
+    var userData = [];
 
-<tr><td>Enter UserName :</td><td> <input type = "text" id = "user"></td></tr>
-<tr><td>Enter User Email :</td> <td> <input type = "text" id = "email"><td></tr>
-<tr><td colspan = 2 align = center><button id = "submit" onclick="save()"> Submit</button></td></tr>
-<tr><td colspan = 2 align = center><button id = "get" onclick="getData()"> Get</button></td></tr>
-</table>
-<p id='demo'></p>    
-	</center>
+    function save() {
 
-<script type="text/javascript">
+        var today = new Date();
+        if (localStorage) {
 
-function save(){
+            var user = document.getElementById("user").value;
+            var email = document.getElementById("email").value;
+            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+            if (!validateName(user)) {
+                alert("INVALID USERNAME");
 
-var userData = new Array();
+            } else if (!validateEmail(email)) {
+                alert("INVALID EMAIL");
+            } else {
+                var userinfo = {
+                    'user': user,
+                    'email': email,
+                    'date': date
+                };
+                userData.push(userinfo);
+                localStorage.setItem('userData', JSON.stringify(userData));
+            }
+        }
+    }
 
-var today = new Date();
+    function getData() {
+
+        var userinfo = JSON.parse(localStorage.getItem('userData'));
+        var txt;
+        console.log(userinfo);
+        console.log(localStorage.getItem('userData'));
+        if (userinfo) {
+            var len = userinfo.length;
+            var txt = "";
+            if (len > 0) {
+                for (let i = 0; i < len; i++) {
+                    console.log(userinfo[i].user);
+
+                    if (userinfo[i].user && userinfo[i].email && userinfo[i].date) {
+                        var userDetails = localStorage.getItem("userData").split(',');
+
+                        txt = "<table border=1><tr><th>USERNAME</th><th>EMAIL</th><th>DATE</th></tr>"
+                        for (let i = 0; i < userinfo.length; i++) {
+                            txt += "<tr>";
+                            txt += "<td>" + userinfo[i].user + "</td>" + "<td>" + userinfo[i].email + "</td>" + "<td>" + userinfo[i].date + "</td>";
+                            txt += "</tr>";
+                        }
+                        txt += "</table>"
+                        document.getElementById("table").innerHTML = txt;
+
+                    }
+                }
+
+            }
+
+        }
+
+    }
 
 
+    function validateName(name) {
+        var pattern = /^[0-9a-zA-Z ]*$/;
+        return pattern.test(name);
+    }
 
-if(localStorage){
-
-var user = document.getElementById("user").value;
-var email = document.getElementById("email").value;
-var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-
-var userinfo = {'user' : user, 'email': email, 'date': date};
-userData.push(userinfo);
-localStorage.setItem('userData',JSON.stringify(userData));
-
-}
-
-
-console.log(name + email + date);
-}
-
-
-function getData(){
-
-var userinfo = localStorage.getItem('user');
-
-document.getElementById('demo').innerHTML = userinfo;
-}
-
-
-
-
-
-</script>
-
+    function validateEmail(email) {
+        var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        return pattern.test(email);
+    }
+    </script>
 </body>
 
 </html>
