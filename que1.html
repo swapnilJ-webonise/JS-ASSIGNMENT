@@ -1,35 +1,37 @@
 <html>
 
 <head>
-    Question 1 - solutions
+  Question 1 - solutions
 </head>
 
 <body>
-    <center> Enter Numbers: <input type='text' id='num'>
-        <button type="button" onclick="myFunction()"> submit </button>
-        <p id="val"></p>
-    </center>
-    <script>
+  <center> Enter Numbers: <input type='text' id='num'>
+    <button type="button" onclick="myFunction()"> submit </button>
+    <p id="val"></p>
+  </center>
+  <script>
+
     function myFunction() {
-        var x, t = new Array();
-        x = document.getElementById("num").value;
 
-        var y = x.split(',');
-        var y = y.toString();
+      var x, t = new Array();
+      x = document.getElementById("num").value;
 
-        var numb = new Object;
+      var y = x.split(',');
+      var y = y.toString();
 
-        for (let i = 0, length = y.length; i < length; i++) {
-            var a = y.charAt(i);
-            numb[a] = (isNaN(numb[a]) ? 1 : numb[a] + 1);
-        }
+      var numb = new Object;
 
-        delete numb[','];
-        for (key in numb) {
-            document.write(key + ' : ' + numb[key] + '<br>');
-        }
+      for (let i = 0, length = y.length; i < length; i++) {
+        var a = y.charAt(i);
+        numb[a] = (isNaN(numb[a]) ? 1 : numb[a] + 1);
+      }
+
+      delete numb[','];
+      for (key in numb) {
+        document.write(key + ' : ' + numb[key] + '<br>');
+      }
     }
-    </script>
+  </script>
 </body>
 
 </html>

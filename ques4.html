@@ -1,51 +1,52 @@
 <html>
 
 <head>
-   <center> Question 4 - solutions<center>
+    <center> Question 4 - solutions<center>
 </head>
 
 <body>
-    <center>
-        <table>
-            <tr>
-                <td>Enter UserName :</td>
-                <td> <input type="text" id="user"></td>
-            </tr>
-            <tr>
-                <td>Enter User Email :</td>
-                <td> <input type="text" id="email">
-                <td>
-            </tr>
-            <tr>
-                <td colspan=2 align=center><button id="submit" onclick="save()"> Submit</button></td>
-            </tr>
-            <tr>
-                <td colspan=2 align=center><button id="get" onclick="getData()"> Get</button></td>
-            </tr>
-        </table>
-        <p id="table"></p>
+  <center>
+    <table>
+      <tr>
+        <td>Enter UserName :</td>
+          <td> <input type="text" id="user"></td>
+           </tr>
+           <tr>
+             <td>Enter User Email :</td>
+             <td> <input type="text" id="email">
+             <td>
+           </tr>
+           <tr>
+             <td colspan=2 align=center><button id="submit" onclick="save()"> Submit</button></td>
+           </tr>
+           <tr>
+             <td colspan=2 align=center><button id="get" onclick="getData()"> Get</button></td>
+           </tr>
+    </table>
+      <p id="table"></p>
     </center>
     <script type="text/javascript">
     var userData = [];
 
     function save() {
 
-        var today = new Date();
+      var today = new Date();
         if (localStorage) {
+          var user = document.getElementById("user").value;
+          var email = document.getElementById("email").value;
+          var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
 
-            var user = document.getElementById("user").value;
-            var email = document.getElementById("email").value;
-            var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-            if (!validateName(user)) {
-                alert("INVALID USERNAME");
-
-            } else if (!validateEmail(email)) {
+          if (!validateName(user)) {
+              alert("INVALID USERNAME");
+            }
+            else if (!validateEmail(email)) {
                 alert("INVALID EMAIL");
-            } else {
-                var userinfo = {
-                    'user': user,
-                    'email': email,
-                    'date': date
+            }
+            else {
+              var userinfo = {
+                  'user': user,
+                  'email': email,
+                  'date': date
                 };
                 userData.push(userinfo);
                 localStorage.setItem('userData', JSON.stringify(userData));
@@ -60,42 +61,41 @@
         console.log(userinfo);
         console.log(localStorage.getItem('userData'));
         if (userinfo) {
-            var len = userinfo.length;
-            var txt = "";
-            if (len > 0) {
-                for (let i = 0; i < len; i++) {
-                    console.log(userinfo[i].user);
+          var len = userinfo.length;
+          var txt = "";
+          if (len > 0) {
+              for (let i = 0; i < len; i++) {
+                console.log(userinfo[i].user);
+                if (userinfo[i].user && userinfo[i].email && userinfo[i].date) {
+                  var userDetails = localStorage.getItem("userData").split(',');
+                  txt = "<table border=1><tr><th>USERNAME</th><th>EMAIL</th><th>DATE</th></tr>"
+                  for (let i = 0; i < userinfo.length; i++) {
+                      txt += "<tr>";
+                      txt += "<td>" + userinfo[i].user + "</td>" + "<td>" + userinfo[i].email + "</td>" + "<td>" + userinfo[i].date + "</td>";
+                      txt += "</tr>";
+                  }
+                  txt += "</table>"
+                  document.getElementById("table").innerHTML = txt;
 
-                    if (userinfo[i].user && userinfo[i].email && userinfo[i].date) {
-                        var userDetails = localStorage.getItem("userData").split(',');
-
-                        txt = "<table border=1><tr><th>USERNAME</th><th>EMAIL</th><th>DATE</th></tr>"
-                        for (let i = 0; i < userinfo.length; i++) {
-                            txt += "<tr>";
-                            txt += "<td>" + userinfo[i].user + "</td>" + "<td>" + userinfo[i].email + "</td>" + "<td>" + userinfo[i].date + "</td>";
-                            txt += "</tr>";
-                        }
-                        txt += "</table>"
-                        document.getElementById("table").innerHTML = txt;
-
-                    }
                 }
+              }
 
-            }
+          }
 
         }
-
     }
 
 
     function validateName(name) {
-        var pattern = /^[0-9a-zA-Z ]*$/;
-        return pattern.test(name);
+
+      var pattern = /^[0-9a-zA-Z ]*$/;
+      return pattern.test(name);
     }
 
     function validateEmail(email) {
-        var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        return pattern.test(email);
+
+      var pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      return pattern.test(email);
     }
     </script>
 </body>
